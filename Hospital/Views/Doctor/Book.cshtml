@@ -1,0 +1,49 @@
+﻿
+@model Doctor
+
+<div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h4 class="text-center mb-4">Book with Dr @Model.Name</h4>
+
+                    <form method="post">
+                        <input type="hidden" name="DoctorId" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input type="text" name="Name" class="form-control" id="Name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="genderSelect" class="form-label">Gender</label>
+                            <select id="genderSelect" name="Gender" class="form-select" required>
+                                <option value="" selected disabled>Choose gender</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="BirthOfDate" class="form-label">Date of Birth</label>
+                            <input type="date" name="BirthOfDate" class="form-control" id="BirthOfDate" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Date" class="form-label">Appointment Date</label>
+                            <input type="date" name="Date" class="form-control" id="Date" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="Time" class="form-label">Time</label>
+                            <input type="time" name="Time" class="form-control" id="Time" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿
+@model List<Appointment>
+
+<section style="background-color: #0d6efd; min-height: 100vh; padding: 120px 0 60px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="bg-white rounded-4 shadow p-4 p-md-5">
+                    <h3 class="text-center mb-4">Appointments</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Patient Name</th>
+                                    <th scope="col">Doctor Name</th>
+                                    <th scope="col">Appointment Date</th>
+                                    <th scope="col">Appointment Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Count; i++)
+                                {
+                                    <tr>
+                                        <th scope="row">@(i + 1)</th>
+                                        <td>@Model[i].Patient.Name</td>
+                                        <td>Dr @Model[i].Doctor.Name</td>
+                                        <td>@Model[i].Date</td>
+                                        <td>@Model[i].Time</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

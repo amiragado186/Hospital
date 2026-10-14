@@ -1,0 +1,72 @@
+﻿@model List<Doctor>
+
+
+
+
+<header class="masthead" style="background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/images/cover1.jpg') center / cover no-repeat; height: auto; min-height: 100vh; padding: 120px 0 60px;">
+    <div class="container">
+
+        <!-- One white container holding filter + doctors + pagination -->
+        <div class="bg-white rounded-4 shadow p-4 p-md-5 text-start">
+
+            <!-- Filter Section -->
+            <form method="get" class="mb-4">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="Doctor Name" name="DoctorName" value="@Context.Request.Query["DoctorName"]">
+                    </div>
+
+                    <div class="col-md-4">
+                        <select class="form-select" name="DoctorSpecialization">
+                            <option value="">-- Select Specialization --</option>
+                            @foreach (var item in ViewBag.Specializations)
+                            {
+                                <option value="@item.Specialization">@item.Specialization</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-dark w-100">Filter</button>
+                    </div>
+                </div>
+            </form>
+
+            <hr />
+
+            <!-- Doctors -->
+            <div class="row g-4 justify-content-center">
+                @foreach (var item in Model)
+                {
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                        <div class="card h-100 shadow-sm">
+                            <img src="~/images/@item.ImgUrl" class="card-img-top" alt="Dr @item.Name" style="height: 180px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Dr @item.Name</h5>
+                                <p class="card-text text-muted">@item.Specialization</p>
+                                <a href="/Doctor/Book/@item.Id" class="btn btn-primary mt-auto">Make Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    </li>
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item"><a class="page-link" href="/Doctor/Index?Page=@i">@i</a></li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>
